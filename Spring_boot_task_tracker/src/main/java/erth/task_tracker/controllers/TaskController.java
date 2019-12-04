@@ -1,10 +1,11 @@
 package erth.task_tracker.controllers;
 
 
-import erth.task_tracker.repositories.RepInterface;
 import erth.task_tracker.entities.Task;
+import erth.task_tracker.repositories.specifications.TaskSpecifications;
 import erth.task_tracker.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TaskController {
@@ -38,7 +40,7 @@ public class TaskController {
 
     @GetMapping({"/show_task"})
     public String showTask(@RequestParam("id") Long id, Model model) {
-        Task task = taskService.getTaskById(id).get(0);
+        Task task = taskService.getTaskById(id);
         model.addAttribute("task", task);
         return "task_form";
     }
@@ -63,13 +65,30 @@ public class TaskController {
     }
 
     @PostMapping({"/filter"})
-    public String filterTask(@RequestParam (value = "id", required = false) Long id,
-                             @RequestParam (value = "name", required = false) String name,
-                             @RequestParam (value = "owner", required = false) String owner,
-                             @RequestParam (value = "executer", required = false) String executer,
-                             @RequestParam (value = "status", required = false) String status,
-                             Model model) {
-        List<Task> tasks = taskService.getTaskByFilter(id,name,owner,executer,status);
+    public String filterTask(Model model,
+                             @RequestParam (required = false) Long id,
+                             @RequestParam (required = false) String name,
+                             @RequestParam (required = false) String owner,
+                             @RequestParam (required = false) String executer,
+                             @RequestParam (required = false) String status
+    ) {
+        Specification<Task> spec = Specification.where(null);
+        if (id != null) {
+            spec = spec.and(TaskSpecifications.idFilter(id));
+        }
+        if (name != null) {
+            spec = spec.and(TaskSpecifications.nameFilter(name));
+        }
+        if (owner != null) {
+            spec = spec.and(TaskSpecifications.ownerFilter(owner));
+        }
+        if (executer != null) {
+            spec = spec.and(TaskSpecifications.executerFilter(executer));
+        }
+        if (status != null) {
+            spec = spec.and(TaskSpecifications.statusFilter(status));
+        }
+        List<Task> tasks = taskService.getTaskByFilter(spec);
         model.addAttribute("tasks", tasks);
         return "index";
     }
