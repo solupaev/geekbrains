@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Таск-трекер</title>
+</head>
+
+<body>
+    <h1>Форма добавления задачи</h1>
+
+    <form action="#" th:action="@{/add}" th:object="${task}" method="post">
+        <input type="text" th:field="*{owner}" placeholder="Введите имя создателя"/><br/>
+        <input type="text" th:field="*{executer}" placeholder="Введите имя исполнителя"/><br/>
+        <input type="text" th:field="*{name}" placeholder="Введите название задачи"/><br/>
+        <input type="text" th:field="*{summary}" placeholder="Введите описание задачи"/><br/>
+        <input type="text" th:field="*{status}" placeholder="Введите статус задачи"/><br/>
+        <input type="submit"/>
+    </form>
+    <br>
+    <a th:href="@{/}">на Главную страницу</a>
+</body>
+</html>

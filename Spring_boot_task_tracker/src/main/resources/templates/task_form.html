@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="'Задача ' + ${task.id}"></title>
+</head>
+
+<body>
+<h1 th:text="'Задача ' + ${task.id}"></h1>
+<a th:href="@{/del_task(id=${task.id})}">Удалить задачу</a><br/>
+<table border="1">
+    <!--/*@thymesVar id="task" type="erth.task_tracker.entities.Task"*/-->
+    <tr><td>ID</td><td th:text="${task.id}"></td></tr>
+    <tr><td>Создатель</td><td th:text="${task.owner}"></td></tr>
+    <tr><td>Исполнитель</td><td th:text="${task.executer}"></td></tr>
+    <tr><td>Название задачи</td><td th:text="${task.name}"></td></tr>
+    <tr><td>Описание</td><td th:text="${task.summary}"></td></tr>
+    <tr><td>Статус</td><td th:text="${task.status}"></td></tr>
+</table>
+
+<br>
+<a th:href="@{/}">на Главную страницу</a>
+</body>
+</html>

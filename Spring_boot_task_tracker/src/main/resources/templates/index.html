@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Таск-трекер</title>
+</head>
+
+<body>
+<h1>Таск-трекер</h1>
+<h2>Фильтр</h2>
+<form action="#" th:action="@{/filter}" method="post">
+    id:&nbsp;<input type="text" name="id"/>&nbsp;
+    Название:&nbsp;<input type="text" name="name"/>&nbsp;
+    Создатель:&nbsp;<input type="text" name="owner"/>&nbsp;
+    Исполнитель:&nbsp;<input type="text" name="executer"/>&nbsp;
+    Статус:&nbsp;<input type="text" name="status"/>&nbsp;
+    <input type="submit"/>
+</form>
+<h2>Список задач</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Создатель</td>
+        <td>Исполнитель</td>
+        <td>Название задачи</td>
+        <td>Описание</td>
+        <td>Статус</td>
+        <td>Просмотр</td>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="tasks" type="java.util.List<erth.task_tracker.entities.Task>"*/-->
+    <tr th:if="${tasks.isEmpty()}">
+        <td colspan="7"> Задачи не найдены </td>
+    </tr>
+
+    <tr th:each="s : ${tasks}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.owner}"></td>
+        <td th:text="${s.executer}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.summary}"></td>
+        <td th:text="${s.status}"></td>
+        <td><a target="_blank" th:href="@{/show_task(id=${s.id})}">Просмотр</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/add}">Добавить задачу</a>
+</body>
+</html>

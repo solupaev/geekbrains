@@ -1,0 +1,1 @@
+CREATE TABLE tasklist (id  integer, executer varchar(255), name varchar(255), owner varchar(255), status varchar(255), summary varchar(255), primary key (id))
