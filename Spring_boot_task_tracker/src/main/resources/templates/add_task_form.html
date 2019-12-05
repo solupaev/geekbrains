@@ -10,11 +10,11 @@
 <body>
     <h1>Форма добавления задачи</h1>
 
-    <form action="#" th:action="@{/add}" th:object="${task}" method="post">
+    <form action="#" th:action="@{/tasks/add}" th:object="${task}" method="post">
         <input type="text" th:field="*{owner}" placeholder="Введите имя создателя"/><br/>
         <input type="text" th:field="*{executer}" placeholder="Введите имя исполнителя"/><br/>
         <input type="text" th:field="*{name}" placeholder="Введите название задачи"/><br/>
-        <input type="text" th:field="*{summary}" placeholder="Введите описание задачи"/><br/>
+        <textarea th:field="*{summary}" placeholder="Введите описание задачи"/><br/>
         <input type="text" th:field="*{status}" placeholder="Введите статус задачи"/><br/>
         <input type="submit"/>
     </form>

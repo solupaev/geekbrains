@@ -9,7 +9,7 @@
 
 <body>
 <h1 th:text="'Задача ' + ${task.id}"></h1>
-<a th:href="@{/del_task(id=${task.id})}">Удалить задачу</a><br/>
+<a th:href="@{/tasks/delete(id=${task.id})}">Удалить задачу</a><br/>
 <table border="1">
     <!--/*@thymesVar id="task" type="erth.task_tracker.entities.Task"*/-->
     <tr><td>ID</td><td th:text="${task.id}"></td></tr>

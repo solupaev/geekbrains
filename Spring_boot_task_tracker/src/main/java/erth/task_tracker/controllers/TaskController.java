@@ -5,6 +5,9 @@ import erth.task_tracker.entities.Task;
 import erth.task_tracker.repositories.specifications.TaskSpecifications;
 import erth.task_tracker.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,47 +34,46 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping({"/"})
-    public String showHomePage(Model model) {
-        List<Task> tasks = taskService.getTaskList();
-        model.addAttribute("tasks", tasks);
-        return "index";
-    }
-
-    @GetMapping({"/show_task"})
+    @GetMapping({"/tasks/show"})
     public String showTask(@RequestParam("id") Long id, Model model) {
         Task task = taskService.getTaskById(id);
         model.addAttribute("task", task);
         return "task_form";
     }
 
-    @GetMapping({"/del_task"})
+    @GetMapping({"/tasks/delete"})
     public String delTask(@RequestParam("id") Long id) {
         taskService.delTask(id);
         return "redirect:/";
     }
 
-    @GetMapping({"/add"})
+    @GetMapping({"/tasks/add"})
     public String addTaskForm (Model model) {
         Task task = new Task();
         model.addAttribute("task", task);
         return "add_task_form";
     }
 
-    @PostMapping({"/add"})
+    @PostMapping({"/tasks/add"})
     public String addTaskProcess (@ModelAttribute("task") Task task) {
         taskService.addTask(task);
         return "redirect:/";
     }
 
-    @PostMapping({"/filter"})
+    @GetMapping({"/"})
     public String filterTask(Model model,
                              @RequestParam (required = false) Long id,
                              @RequestParam (required = false) String name,
                              @RequestParam (required = false) String owner,
                              @RequestParam (required = false) String executer,
-                             @RequestParam (required = false) String status
+                             @RequestParam (required = false) String status,
+                             @RequestParam(defaultValue = "1") Long pageNumber
     ) {
+        int productsPerPage = 5;
+        if (pageNumber < 1L) {
+            pageNumber = 1L;
+        }
+
         Specification<Task> spec = Specification.where(null);
         if (id != null) {
             spec = spec.and(TaskSpecifications.idFilter(id));
@@ -88,8 +90,9 @@ public class TaskController {
         if (status != null) {
             spec = spec.and(TaskSpecifications.statusFilter(status));
         }
-        List<Task> tasks = taskService.getTaskByFilter(spec);
-        model.addAttribute("tasks", tasks);
+
+        Page<Task> tasksPage = taskService.findAll(spec, PageRequest.of(pageNumber.intValue() - 1, productsPerPage, Sort.Direction.ASC, "id"));
+        model.addAttribute("tasksPage", tasksPage);
         return "index";
     }
 

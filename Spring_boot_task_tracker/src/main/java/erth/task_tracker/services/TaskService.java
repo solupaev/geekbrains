@@ -3,6 +3,8 @@ package erth.task_tracker.services;
 import erth.task_tracker.entities.Task;
 import erth.task_tracker.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,8 @@ public class TaskService {
         return taskRepository.findById(id).get();
     }
 
-    public List<Task> getTaskByFilter(Specification<Task> spec) {
-        return taskRepository.findAll(spec);
+    public Page<Task> findAll(Specification<Task> spec, Pageable pageable) {
+        return taskRepository.findAll(spec, pageable);
     }
 
 }
