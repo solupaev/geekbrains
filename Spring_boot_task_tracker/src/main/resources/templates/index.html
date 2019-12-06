@@ -18,7 +18,14 @@
     Название:&nbsp;<input type="text" name="name" th:value="${name}"/>&nbsp;
     Создатель:&nbsp;<input type="text" name="owner" th:value="${owner}"/>&nbsp;
     Исполнитель:&nbsp;<input type="text" name="executer" th:value="${executer}"/>&nbsp;
-    Статус:&nbsp;<input type="text" name="status" th:value="${status}"/>&nbsp;
+    Статус:&nbsp;
+    <select th:name="status" >
+        <option value="">Все</option>
+        <option th:each="st : ${T(erth.task_tracker.enums.Status).values()}"
+                th:text="${st.rus}"
+                th:value="${st}"
+                th:selected="${st.isSelected(status)}"/>
+    </select>
     <input type="submit"/>
 </form>
 <h2>Список задач</h2>
@@ -43,7 +50,7 @@
             <td th:text="${p.executer}"></td>
             <td th:text="${p.name}"></td>
             <td th:text="${p.summary}"></td>
-            <td th:text="${p.status}"></td>
+            <td th:text="${p.status.rus}"></td>
             <td><a target="_blank" th:href="@{/tasks/show(id=${p.id})}">Просмотр</a></td>
         </tr>
     </div>

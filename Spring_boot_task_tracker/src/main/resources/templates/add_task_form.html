@@ -15,8 +15,12 @@
         <input type="text" th:field="*{executer}" placeholder="Введите имя исполнителя"/><br/>
         <input type="text" th:field="*{name}" placeholder="Введите название задачи"/><br/>
         <textarea th:field="*{summary}" placeholder="Введите описание задачи"/><br/>
-        <input type="text" th:field="*{status}" placeholder="Введите статус задачи"/><br/>
-        <input type="submit"/>
+        <select th:name="status">
+            <option th:each="status : ${T(erth.task_tracker.enums.Status).values()}"
+                    th:text="${status.rus}"
+                    th:value="${status}"/>
+        </select><br/><br/>
+        <button type="submit">Создать</button>
     </form>
     <br>
     <a th:href="@{/}">на Главную страницу</a>

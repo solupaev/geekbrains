@@ -1,5 +1,6 @@
 package erth.task_tracker.entities;
 
+import erth.task_tracker.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Scope;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tasklist")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -29,10 +31,11 @@ public class Task {
     @Column(name = "summary")
     private String summary;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private String status;
+    private Status status;
 
-    public Task(String name, String owner, String executer, String summary, String status) {
+    public Task(String name, String owner, String executer, String summary, Status status) {
         this.name = name;
         this.owner = owner;
         this.executer = executer;
@@ -42,6 +45,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Задача: id=" + id + ", название: " + name + ", автор: " + owner + ", исполнитель: " + executer + ", описание: " + summary + ", статус: " + status;
+        return "Задача: id=" + id + ", название: " + name + ", автор: " + owner + ", исполнитель: " + executer + ", описание: " + summary + ", статус: " + status.getRus();
     }
 }

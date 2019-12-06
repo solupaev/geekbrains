@@ -2,6 +2,7 @@ package erth.task_tracker.controllers;
 
 
 import erth.task_tracker.entities.Task;
+import erth.task_tracker.enums.Status;
 import erth.task_tracker.repositories.specifications.TaskSpecifications;
 import erth.task_tracker.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class TaskController {
                              @RequestParam (required = false) String name,
                              @RequestParam (required = false) String owner,
                              @RequestParam (required = false) String executer,
-                             @RequestParam (required = false) String status,
+                             @RequestParam (required = false) Status status,
                              @RequestParam(defaultValue = "1") Long pageNumber
     ) {
         int productsPerPage = 5;
