@@ -3,8 +3,6 @@ package erth.task_tracker.entities;
 import erth.task_tracker.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
