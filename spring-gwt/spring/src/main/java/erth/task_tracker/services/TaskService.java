@@ -1,5 +1,6 @@
 package erth.task_tracker.services;
 
+import com.geekbrains.gwt.common.TaskDto;
 import erth.task_tracker.entities.Task;
 import erth.task_tracker.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public void delTask(long id) {
+    public void delTask(Long id) {
         taskRepository.deleteById(id);
     }
 
@@ -31,7 +32,11 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task getTaskById(long id) {
+    public List<TaskDto> getAll() {
+        return taskRepository.findAllDtos();
+    }
+
+    public Task getTaskById(Long id) {
         return taskRepository.findById(id).get();
     }
 

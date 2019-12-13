@@ -7,10 +7,10 @@ import org.fusesource.restygwt.client.*;
 public class GwtApp implements EntryPoint {
     public void onModuleLoad() {
         Defaults.setServiceRoot("http://localhost:8189/gwt-rest");
-        ItemsTableWidget itemsTableWidget = new ItemsTableWidget();
+        TasksTableWidget tasksTableWidget = new TasksTableWidget();
         VerticalPanel verticalPanel = new VerticalPanel();
-        verticalPanel.add(new AddItemFormWidget(itemsTableWidget));
-        verticalPanel.add(itemsTableWidget);
+        verticalPanel.add(new AddTaskFormWidget(tasksTableWidget));
+        verticalPanel.add(tasksTableWidget);
         RootPanel.get().add(verticalPanel);
     }
 }
