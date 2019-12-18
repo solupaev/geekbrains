@@ -1,0 +1,19 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:DecoratorPanel>
+        <g:FormPanel ui:field="form" method="POST">
+            <g:VerticalPanel spacing="10">
+                <g:HorizontalPanel>
+                    <g:Label text="Username:" width="100px"/>
+                    <g:TextBox name="username" ui:field="textUsername" width="200px"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Password:" width="100px"/>
+                    <g:TextBox name="password" ui:field="textPassword" width="200px"/>
+                </g:HorizontalPanel>
+                <g:Button ui:field="btnSubmit">Войти</g:Button>
+            </g:VerticalPanel>
+        </g:FormPanel>
+    </g:DecoratorPanel>
+</ui:UiBinder>
