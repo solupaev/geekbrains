@@ -24,6 +24,11 @@ public class TaskService {
         taskRepository.save(task);
     }
 
+    public TaskDto save(TaskDto taskDto) {
+        Task item = taskRepository.save(new Task(taskDto));
+        return new TaskDto(item.getId(), item.getName(),item.getOwner(),item.getExecuter(),item.getSummary());
+    }
+
     public void delTask(Long id) {
         taskRepository.deleteById(id);
     }

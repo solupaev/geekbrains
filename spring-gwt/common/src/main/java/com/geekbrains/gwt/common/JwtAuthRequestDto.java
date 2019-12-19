@@ -1,6 +1,6 @@
 package com.geekbrains.gwt.common;
 
-public class AuthRequestDto {
+public class JwtAuthRequestDto {
     private String username;
     private String password;
 
@@ -20,10 +20,10 @@ public class AuthRequestDto {
         this.password = password;
     }
 
-    public AuthRequestDto() {
+    public JwtAuthRequestDto() {
     }
 
-    public AuthRequestDto(String username, String password) {
+    public JwtAuthRequestDto(String username, String password) {
         this.username = username;
         this.password = password;
     }

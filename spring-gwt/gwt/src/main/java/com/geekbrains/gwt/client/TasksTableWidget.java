@@ -4,6 +4,7 @@ import com.geekbrains.gwt.common.TaskDto;
 import com.google.gwt.cell.client.ActionCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
@@ -97,25 +98,23 @@ public class TasksTableWidget extends Composite {
         table.setColumnWidth(ownerColumn, 100, Style.Unit.PX);
         table.setColumnWidth(executerColumn, 100, Style.Unit.PX);
         table.setColumnWidth(actionColumn, 200, Style.Unit.PX);
-
-        refresh();
     }
 
     public void refresh() {
-        client.getAllTasks(new MethodCallback<List<TaskDto>>() {
+        String token = Storage.getLocalStorageIfSupported().getItem("jwt");
+        client.getAllTasks(token, new MethodCallback<List<TaskDto>>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
                 GWT.log(throwable.toString());
                 GWT.log(throwable.getMessage());
-                Window.alert("Невозможно получить список задач: Сервер не отвечает");
+                Window.alert("Невозможно получить список задач: сервер не отвечает или не пройдена авторизация");
             }
 
             @Override
             public void onSuccess(Method method, List<TaskDto> i) {
                 GWT.log("Received " + i.size() + " tasks");
-                List<TaskDto> tasks = new ArrayList<>();
-                tasks.addAll(i);
-                table.setRowData( tasks);
+                GWT.log("Status code: " + method.getResponse().getStatusCode());
+                table.setRowData(i);
             }
         });
     }

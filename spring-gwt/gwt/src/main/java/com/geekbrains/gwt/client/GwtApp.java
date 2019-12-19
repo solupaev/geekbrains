@@ -9,17 +9,20 @@ public class GwtApp implements EntryPoint {
     public void onModuleLoad() {
         Defaults.setServiceRoot("http://localhost:8189/gwt-rest");
         TasksTableWidget tasksTableWidget = new TasksTableWidget();
+
         VerticalPanel verticalPanel = new VerticalPanel();
-        verticalPanel.add(new AddTaskFormWidget(tasksTableWidget));
+        HorizontalPanel horizontalPanel = new HorizontalPanel();
+        horizontalPanel.add(new FilterTaskWidget(tasksTableWidget));
+        horizontalPanel.add(new AddTaskFormWidget(tasksTableWidget));
+        verticalPanel.add(horizontalPanel);
         verticalPanel.add(tasksTableWidget);
-        RootPanel.get().add(verticalPanel);
 
         // Create a tab panel
         TabLayoutPanel tabPanel = new TabLayoutPanel(2.5, Style.Unit.EM);
         tabPanel.setAnimationDuration(100);
         tabPanel.getElement().getStyle().setMarginBottom(10.0, Style.Unit.PX);
 
-        LoginForm loginForm = new LoginForm();
+        LoginForm loginForm = new LoginForm(tabPanel, tasksTableWidget);
         tabPanel.add(loginForm, "Login");
 
         tabPanel.add(verticalPanel, "Main Page");
@@ -27,9 +30,9 @@ public class GwtApp implements EntryPoint {
 
         tabPanel.selectTab(0);
         tabPanel.ensureDebugId("cwTabPanel");
-//        tabPanel.getTabWidget(0).setVisible(false);
-//        tabPanel.getTabWidget(1).setVisible(false);
-//        verticalPanel.add(tabPanel);
+        tabPanel.getTabWidget(0).setVisible(false);
+        tabPanel.getTabWidget(1).setVisible(false);
+
         RootPanel.get().add(tabPanel);
     }
 }

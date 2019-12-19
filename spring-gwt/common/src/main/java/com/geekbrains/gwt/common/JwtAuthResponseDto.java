@@ -1,6 +1,6 @@
 package com.geekbrains.gwt.common;
 
-public class AuthResponseDto {
+public class JwtAuthResponseDto {
     private String token;
 
     public String getToken() {
@@ -11,6 +11,10 @@ public class AuthResponseDto {
         this.token = token;
     }
 
-    public AuthResponseDto() {
+    public JwtAuthResponseDto() {
+    }
+
+    public JwtAuthResponseDto(String token) {
+        this.token = token;
     }
 }

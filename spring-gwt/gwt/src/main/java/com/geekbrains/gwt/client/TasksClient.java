@@ -10,7 +10,7 @@ import java.util.List;
 @Path("/tasks")
 public interface TasksClient extends RestService {
     @GET
-    void getAllTasks(MethodCallback<List<TaskDto>> tasks);
+    void getAllTasks(@HeaderParam("Authorization") String token, MethodCallback<List<TaskDto>> tasks);
 
     @GET
     @Path("remove/{id}")

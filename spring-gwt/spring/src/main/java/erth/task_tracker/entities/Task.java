@@ -1,5 +1,6 @@
 package erth.task_tracker.entities;
 
+import com.geekbrains.gwt.common.TaskDto;
 import erth.task_tracker.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,15 @@ public class Task {
         this.executer = executer;
         this.summary = summary;
         this.status = status;
+    }
+
+    public Task(TaskDto taskDto) {
+        this.id = taskDto.getId();
+        this.name = taskDto.getName();
+        this.owner = taskDto.getOwner();
+        this.executer = taskDto.getExecuter();
+        this.summary = taskDto.getSummary();
+        this.status = Status.OPEN;
     }
 
     @Override

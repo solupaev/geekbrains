@@ -36,10 +36,8 @@ public class MainController {
     }
 
     @PostMapping("/tasks")
-    public TaskDto createNewTAsk(@RequestParam String name, @RequestParam String owner, @RequestParam String executer, @RequestParam String summary) {
-        Task task = new Task(name,owner,executer,summary, Status.OPEN);
-        taskService.addTask(task);
-        return new TaskDto(task.getId(), name, owner, executer, summary);
+    public TaskDto createNewTask(@ModelAttribute TaskDto taskDto) {
+        return taskService.save(taskDto);
     }
 
 }
