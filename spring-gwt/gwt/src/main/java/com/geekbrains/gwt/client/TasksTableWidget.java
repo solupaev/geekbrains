@@ -2,20 +2,24 @@ package com.geekbrains.gwt.client;
 
 import com.geekbrains.gwt.common.TaskDto;
 import com.google.gwt.cell.client.ActionCell;
+import com.google.gwt.cell.client.CompositeCell;
+import com.google.gwt.cell.client.HasCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.cellview.client.*;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TasksTableWidget extends Composite {
@@ -65,13 +69,15 @@ public class TasksTableWidget extends Composite {
         };
         table.addColumn(executerColumn, "Исполнитель");
 
+        String token = Storage.getLocalStorageIfSupported().getItem("jwt");
+
         client = GWT.create(TasksClient.class);
 
         Column<TaskDto, TaskDto> actionColumn = new Column<TaskDto, TaskDto>(
                 new ActionCell<TaskDto>("REMOVE", new ActionCell.Delegate<TaskDto>() {
                     @Override
                     public void execute(TaskDto task) {
-                        client.removeTask(task.getId().toString(), new MethodCallback<Void>() {
+                        client.removeTask(token, task.getId().toString(), new MethodCallback<Void>() {
                             @Override
                             public void onFailure(Method method, Throwable throwable) {
                                 GWT.log(throwable.toString());
@@ -80,7 +86,7 @@ public class TasksTableWidget extends Composite {
 
                             @Override
                             public void onSuccess(Method method, Void result) {
-                                refresh();
+                                refresh("","","");
                             }
                         });
                     }
@@ -90,19 +96,46 @@ public class TasksTableWidget extends Composite {
                 return task;
             }
         };
-
         table.addColumn(actionColumn, "Actions");
+
+        Column<TaskDto, TaskDto> editColumn = new Column<TaskDto, TaskDto>(
+                new ActionCell<TaskDto>("EDIT/DETAIL", new ActionCell.Delegate<TaskDto>() {
+                    @Override
+                    public void execute(TaskDto task) {
+                        showEditDialog(task);
+                    }
+                })) {
+            @Override
+            public TaskDto getValue(TaskDto task) {
+                return task;
+            }
+        };
+        table.addColumn(editColumn, "");
 
         table.setColumnWidth(idColumn, 50, Style.Unit.PX);
         table.setColumnWidth(nameColumn, 100, Style.Unit.PX);
         table.setColumnWidth(ownerColumn, 100, Style.Unit.PX);
         table.setColumnWidth(executerColumn, 100, Style.Unit.PX);
-        table.setColumnWidth(actionColumn, 200, Style.Unit.PX);
+        table.setColumnWidth(actionColumn, 100, Style.Unit.PX);
+        table.setColumnWidth(editColumn, 100, Style.Unit.PX);
     }
 
-    public void refresh() {
+    private DialogBox showEditDialog(TaskDto task) {
+        final DialogBox dialog = new DialogBox(false, true);
+        dialog.setText("Просмотр/редактирование задачи(id=" + task.getId() + ")");
         String token = Storage.getLocalStorageIfSupported().getItem("jwt");
-        client.getAllTasks(token, new MethodCallback<List<TaskDto>>() {
+
+        VerticalPanel vPanel = new VerticalPanel();
+        vPanel.add(new EditTaskWidget(task, dialog, this));
+        dialog.setWidget(vPanel);
+        dialog.setPopupPosition(400, 300);
+        dialog.show();
+        return dialog;
+    }
+
+    public void refresh(String nameFilter, String ownerFilter, String executerFilter) {
+        String token = Storage.getLocalStorageIfSupported().getItem("jwt");
+        client.getAllTasks(token, nameFilter, ownerFilter, executerFilter, new MethodCallback<List<TaskDto>>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
                 GWT.log(throwable.toString());
@@ -115,6 +148,23 @@ public class TasksTableWidget extends Composite {
                 GWT.log("Received " + i.size() + " tasks");
                 GWT.log("Status code: " + method.getResponse().getStatusCode());
                 table.setRowData(i);
+            }
+        });
+    }
+
+    public void addTask(String name, String owner, String executer, String summary) {
+        String token = Storage.getLocalStorageIfSupported().getItem("jwt");
+
+        client.addTask(new TaskDto(null,name,owner,executer,summary), token,  new MethodCallback<TaskDto>() {
+            @Override
+            public void onFailure(Method method, Throwable throwable) {
+                GWT.log(throwable.toString());
+                GWT.log(throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(Method method, TaskDto result) {
+                refresh("","","");
             }
         });
     }

@@ -49,11 +49,11 @@ public class FilterTaskWidget extends Composite {
 
     @UiHandler("form")
     public void onSubmitComplete(FormPanel.SubmitCompleteEvent event) {
-        tasksTableWidget.refresh();
+
     }
 
     @UiHandler("btnSubmit")
     public void submitClick(ClickEvent event) {
-        form.submit();
+        tasksTableWidget.refresh(nameText.getText(), ownerText.getText(), executerText.getText());
     }
 }

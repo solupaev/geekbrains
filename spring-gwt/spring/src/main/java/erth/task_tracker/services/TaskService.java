@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -25,8 +26,18 @@ public class TaskService {
     }
 
     public TaskDto save(TaskDto taskDto) {
-        Task item = taskRepository.save(new Task(taskDto));
-        return new TaskDto(item.getId(), item.getName(),item.getOwner(),item.getExecuter(),item.getSummary());
+        if (taskDto.getId() == null) {
+            Task item = taskRepository.save(new Task(taskDto));
+            return new TaskDto(item.getId(), item.getName(), item.getOwner(), item.getExecuter(), item.getSummary());
+        } else {
+            Task item = taskRepository.getOne(taskDto.getId());
+            item.setName(taskDto.getName());
+            item.setOwner(taskDto.getOwner());
+            item.setExecuter(taskDto.getExecuter());
+            item.setSummary(taskDto.getSummary());
+            taskRepository.save(item);
+            return taskDto;
+        }
     }
 
     public void delTask(Long id) {
@@ -37,8 +48,10 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public List<TaskDto> getAll() {
-        return taskRepository.findAllDtos();
+    public List<TaskDto> getAll(Specification<Task> spec) {
+        List<Task> tasks = (List<Task>) taskRepository.findAll(spec);
+
+        return tasks.stream().map(task -> new TaskDto(task.getId(),task.getName(),task.getOwner(),task.getExecuter(),task.getSummary())).collect(Collectors.toList());
     }
 
     public Task getTaskById(Long id) {

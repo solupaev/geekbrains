@@ -1,7 +1,9 @@
 package com.geekbrains.gwt.client;
 
+import com.geekbrains.gwt.common.TaskDto;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -9,8 +11,10 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import org.fusesource.restygwt.client.Defaults;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.MethodCallback;
 
-public class AddTaskFormWidget extends Composite {
+public class EditTaskWidget extends Composite {
     @UiField
     FormPanel form;
 
@@ -26,17 +30,24 @@ public class AddTaskFormWidget extends Composite {
     @UiField
     TextArea summaryText;
 
+    private TaskDto task;
+    private DialogBox dialog;
     private TasksTableWidget tasksTableWidget;
 
-    @UiTemplate("AddTaskForm.ui.xml")
-    interface AddTaskFormBinder extends UiBinder<Widget, AddTaskFormWidget> {
+    @UiTemplate("EditTaskForm.ui.xml")
+    interface EditTaskBinder extends UiBinder<Widget, EditTaskWidget> {
     }
 
-    private static AddTaskFormWidget.AddTaskFormBinder uiBinder = GWT.create(AddTaskFormWidget.AddTaskFormBinder.class);
+    private static EditTaskWidget.EditTaskBinder uiBinder = GWT.create(EditTaskWidget.EditTaskBinder.class);
 
-    public AddTaskFormWidget(TasksTableWidget tasksTableWidget) {
+    public EditTaskWidget(TaskDto task, DialogBox dialog, TasksTableWidget tasksTableWidget) {
         this.initWidget(uiBinder.createAndBindUi(this));
-        this.form.setAction(Defaults.getServiceRoot().concat("tasks"));
+        this.nameText.setText(task.getName());
+        this.ownerText.setText(task.getOwner());
+        this.executerText.setText(task.getExecuter());
+        this.summaryText.setText(task.getSummary());
+        this.task = task;
+        this.dialog = dialog;
         this.tasksTableWidget = tasksTableWidget;
     }
 
@@ -66,7 +77,26 @@ public class AddTaskFormWidget extends Composite {
 
     @UiHandler("btnSubmit")
     public void submitClick(ClickEvent event) {
-        tasksTableWidget.addTask(nameText.getText(), ownerText.getText(), executerText.getText(), summaryText.getText());
-        this.form.reset();
+        TasksClient client = GWT.create(TasksClient.class);
+        String token = Storage.getLocalStorageIfSupported().getItem("jwt");
+
+        client.addTask(new TaskDto(task.getId(),nameText.getText(),ownerText.getText(),executerText.getText(),summaryText.getText()), token, new MethodCallback<TaskDto>() {
+            @Override
+            public void onFailure(Method method, Throwable throwable) {
+                GWT.log(throwable.toString());
+                GWT.log(throwable.getMessage());
+            }
+
+            @Override
+            public void onSuccess(Method method, TaskDto result) {
+                dialog.hide();
+                tasksTableWidget.refresh("","","");
+            }
+        });
+    }
+
+    @UiHandler("btnClose")
+    public void closeClick(ClickEvent event) {
+        this.dialog.hide();
     }
 }
