@@ -1,0 +1,30 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:DecoratorPanel>
+        <g:FormPanel ui:field="form" method="GET">
+            <g:VerticalPanel spacing="10">
+                <g:HorizontalPanel>
+                    <g:Label text="Фильтр"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Тема:" width="100px"/>
+                    <g:TextBox name="name" ui:field="nameText"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Автор:" width="100px"/>
+                    <g:TextBox name="owner" ui:field="ownerText"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Исполнитель:" width="100px"/>
+                    <g:TextBox name="executer" ui:field="executerText"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Статус:" width="100px" height="50px"/>
+                    <g:TextBox name="status" ui:field="status"/>
+                </g:HorizontalPanel>
+                <g:Button ui:field="btnSubmit">Найти</g:Button>
+            </g:VerticalPanel>
+        </g:FormPanel>
+    </g:DecoratorPanel>
+</ui:UiBinder>

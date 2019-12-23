@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2d006f39-6ac0-4d77-ab37-c3a23aa06849" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/geekbrains/gwt/common/ItemDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/geekbrains/gwt/common.gwt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/common.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/geekbrains/gwt/common.gwt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/geekbrains/gwt/common/ItemDto.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/geekbrains/gwt/model.gwt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/gwt-common-1.0-SNAPSHOT-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/gwt-common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/gwt-test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/java/com/erth/spring_gwt_task_tracker/GwtApp.gwt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/java/com/erth/spring_gwt_task_tracker/client/GreetingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/java/com/erth/spring_gwt_task_tracker/client/GreetingServiceAsync.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/java/com/erth/spring_gwt_task_tracker/client/GwtApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/java/com/erth/spring_gwt_task_tracker/server/GreetingServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/java/com/erth/spring_gwt_task_tracker/shared/FieldVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/webapp/GwtApp.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/webapp/GwtApp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/main/webapp/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/test/java/com/erth/spring_gwt_task_tracker/GwtAppJUnit.gwt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/test/java/com/erth/spring_gwt_task_tracker/GwtAppSuite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gwt/GWTapp/src/test/java/com/erth/spring_gwt_task_tracker/client/GwtAppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/TaskTrackerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/configs/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/controllers/TaskController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/entities/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/enums/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/repositories/TaskRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/repositories/specifications/TaskSpecifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/java/erth/task_tracker/services/TaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/db/migration/V1__initialize.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/flyway.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/private.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/templates/add_task_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/main/resources/templates/task_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/src/test/java/erth/task_tracker/TaskTrackerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring/tasklist.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/TaskTrackerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/configs/AppConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/controllers/TaskController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/entities/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/enums/Status.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/repositories/TaskRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/repositories/specifications/TaskSpecifications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/java/erth/task_tracker/services/TaskService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/db/migration/V1__initialize.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/flyway.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/private.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/templates/add_task_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/main/resources/templates/task_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/src/test/java/erth/task_tracker/TaskTrackerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring_boot_task_tracker/tasklist.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gwt-test/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gwt-test/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gwt-test/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gwt-test/.idea/gwt-test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gwt-test/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gwt-test/.idea/vcs.xml" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1UpAK05MUa1Hw4sjE5RXXfTVWuM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2d006f39-6ac0-4d77-ab37-c3a23aa06849" name="Default Changelist" comment="" />
+      <created>1576043094856</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576043094856</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

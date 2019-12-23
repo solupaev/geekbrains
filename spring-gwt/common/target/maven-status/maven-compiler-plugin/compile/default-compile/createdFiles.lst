@@ -1,0 +1,5 @@
+com\geekbrains\gwt\common\UserDto.class
+com\geekbrains\gwt\common\JwtAuthResponseDto.class
+com\geekbrains\gwt\common\ErrorDto.class
+com\geekbrains\gwt\common\JwtAuthRequestDto.class
+com\geekbrains\gwt\common\TaskDto.class
