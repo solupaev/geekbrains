@@ -21,7 +21,13 @@
                 </g:HorizontalPanel>
                 <g:HorizontalPanel>
                     <g:Label text="Статус:" width="100px" height="50px"/>
-                    <g:TextBox name="status" ui:field="status"/>
+                    <g:ListBox ui:field="statusBox" name="status" width="209px">
+                        <g:item value=""></g:item>
+                        <g:item value="OPEN">Открыта</g:item>
+                        <g:item value="PLANED">Запланирована</g:item>
+                        <g:item value="INPROGRESS">В работе</g:item>
+                        <g:item value="CLOSED">Закрыта</g:item>
+                    </g:ListBox>
                 </g:HorizontalPanel>
                 <g:Button ui:field="btnSubmit">Найти</g:Button>
             </g:VerticalPanel>

@@ -30,6 +30,9 @@ public class EditTaskWidget extends Composite {
     @UiField
     TextArea summaryText;
 
+    @UiField
+    ListBox statusBox;
+
     private TaskDto task;
     private DialogBox dialog;
     private TasksTableWidget tasksTableWidget;
@@ -46,6 +49,12 @@ public class EditTaskWidget extends Composite {
         this.ownerText.setText(task.getOwner());
         this.executerText.setText(task.getExecuter());
         this.summaryText.setText(task.getSummary());
+        for (int i = 0; i < statusBox.getItemCount(); i++) {
+            if (statusBox.getValue(i).equals(task.getStatus())) {
+                statusBox.setSelectedIndex(i);
+                break;
+            }
+        }
         this.task = task;
         this.dialog = dialog;
         this.tasksTableWidget = tasksTableWidget;
@@ -80,7 +89,7 @@ public class EditTaskWidget extends Composite {
         TasksClient client = GWT.create(TasksClient.class);
         String token = Storage.getLocalStorageIfSupported().getItem("jwt");
 
-        client.addTask(new TaskDto(task.getId(),nameText.getText(),ownerText.getText(),executerText.getText(),summaryText.getText()), token, new MethodCallback<TaskDto>() {
+        client.addTask(new TaskDto(task.getId(),nameText.getText(),ownerText.getText(),executerText.getText(),summaryText.getText(),statusBox.getSelectedValue()), token, new MethodCallback<TaskDto>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
                 GWT.log(throwable.toString());
@@ -90,7 +99,7 @@ public class EditTaskWidget extends Composite {
             @Override
             public void onSuccess(Method method, TaskDto result) {
                 dialog.hide();
-                tasksTableWidget.refresh("","","");
+                tasksTableWidget.refresh("","","","");
             }
         });
     }

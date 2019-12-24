@@ -69,6 +69,25 @@ public class TasksTableWidget extends Composite {
         };
         table.addColumn(executerColumn, "Исполнитель");
 
+        TextColumn<TaskDto> statusColumn = new TextColumn<TaskDto>() {
+            @Override
+            public String getValue(TaskDto taskDto) {
+                switch (taskDto.getStatus()) {
+                    case ("OPEN"):
+                        return "Открыта";
+                    case ("PLANED"):
+                        return "Запланирована";
+                    case ("INPROGRESS"):
+                        return "В работе";
+                    case ("CLOSED"):
+                        return "Закрыта";
+                    default:
+                        return "";
+                }
+            }
+        };
+        table.addColumn(statusColumn, "Статус");
+
         String token = Storage.getLocalStorageIfSupported().getItem("jwt");
 
         client = GWT.create(TasksClient.class);
@@ -86,7 +105,7 @@ public class TasksTableWidget extends Composite {
 
                             @Override
                             public void onSuccess(Method method, Void result) {
-                                refresh("","","");
+                                refresh("","","","");
                             }
                         });
                     }
@@ -116,6 +135,7 @@ public class TasksTableWidget extends Composite {
         table.setColumnWidth(nameColumn, 100, Style.Unit.PX);
         table.setColumnWidth(ownerColumn, 100, Style.Unit.PX);
         table.setColumnWidth(executerColumn, 100, Style.Unit.PX);
+        table.setColumnWidth(statusColumn, 100, Style.Unit.PX);
         table.setColumnWidth(actionColumn, 100, Style.Unit.PX);
         table.setColumnWidth(editColumn, 100, Style.Unit.PX);
     }
@@ -133,9 +153,9 @@ public class TasksTableWidget extends Composite {
         return dialog;
     }
 
-    public void refresh(String nameFilter, String ownerFilter, String executerFilter) {
+    public void refresh(String nameFilter, String ownerFilter, String executerFilter, String statusFilter) {
         String token = Storage.getLocalStorageIfSupported().getItem("jwt");
-        client.getAllTasks(token, nameFilter, ownerFilter, executerFilter, new MethodCallback<List<TaskDto>>() {
+        client.getAllTasks(token, nameFilter, ownerFilter, executerFilter, statusFilter, new MethodCallback<List<TaskDto>>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
                 GWT.log(throwable.toString());
@@ -155,7 +175,7 @@ public class TasksTableWidget extends Composite {
     public void addTask(String name, String owner, String executer, String summary) {
         String token = Storage.getLocalStorageIfSupported().getItem("jwt");
 
-        client.addTask(new TaskDto(null,name,owner,executer,summary), token,  new MethodCallback<TaskDto>() {
+        client.addTask(new TaskDto(null,name,owner,executer,summary,"OPEN"), token,  new MethodCallback<TaskDto>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
                 GWT.log(throwable.toString());
@@ -164,7 +184,7 @@ public class TasksTableWidget extends Composite {
 
             @Override
             public void onSuccess(Method method, TaskDto result) {
-                refresh("","","");
+                refresh("","","","");
             }
         });
     }

@@ -29,6 +29,7 @@ public class MainController {
     public List<TaskDto> getAllTasks(@RequestParam(name = "nameFilter", required = false) String nameFilter
                                     ,@RequestParam(name = "ownerFilter", required = false) String ownerFilter
                                     ,@RequestParam(name = "executerFilter", required = false) String executerFilter
+                                    ,@RequestParam(name = "statusFilter", required = false) String statusFilter
                                     ) {
 
         Specification<Task> spec = Specification.where(null);
@@ -41,6 +42,9 @@ public class MainController {
         }
         if (executerFilter != null && !executerFilter.equals("null")){
             spec = spec.and(TaskSpecifications.executerFilter(executerFilter));
+        }
+        if (statusFilter != null && statusFilter != "" && !statusFilter.equals("null")){
+            spec = spec.and(TaskSpecifications.statusFilter(Status.valueOf(statusFilter)));
         }
 
         List<TaskDto> tasks = taskService.getAll(spec);
@@ -56,12 +60,6 @@ public class MainController {
     @PostMapping("/tasks")
     public TaskDto createNewTask(@RequestBody TaskDto taskDto) {
         System.out.println("Пришло на создание: " + taskDto.getName());
-        return taskService.save(taskDto);
-    }
-
-    @PutMapping("/tasks")
-    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
-        System.out.println("Пришло на обновление: " + taskDto.getName());
         return taskService.save(taskDto);
     }
 

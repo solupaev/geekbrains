@@ -6,6 +6,7 @@ public class TaskDto {
     private String owner;
     private String executer;
     private String summary;
+    private String status;
 
     public String getName() {
         return name;
@@ -47,14 +48,23 @@ public class TaskDto {
         this.id = id;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public TaskDto() {
     }
 
-    public TaskDto(Long id, String name, String owner, String executer, String summary) {
+    public TaskDto(Long id, String name, String owner, String executer, String summary, String status) {
         this.id = id;
         this.name = name;
         this.owner = owner;
         this.executer = executer;
         this.summary = summary;
+        this.status = status;
     }
 }

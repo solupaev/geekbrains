@@ -13,7 +13,7 @@ public interface TasksClient extends RestService {
     @Path("/")
     void getAllTasks(@HeaderParam("Authorization") String token, @QueryParam("nameFilter") String nameFilter
             , @QueryParam("ownerFilter") String ownerFilter, @QueryParam("executerFilter") String executerFilter
-            , MethodCallback<List<TaskDto>> tasks);
+            , @QueryParam("statusFilter") String statusFilter, MethodCallback<List<TaskDto>> tasks);
 
     @POST
     @Path("/")

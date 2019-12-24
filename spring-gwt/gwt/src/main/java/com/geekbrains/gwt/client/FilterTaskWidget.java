@@ -7,10 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 import org.fusesource.restygwt.client.Defaults;
 
 public class FilterTaskWidget extends Composite {
@@ -27,7 +24,7 @@ public class FilterTaskWidget extends Composite {
     TextBox executerText;
 
     @UiField
-    TextBox status;
+    ListBox statusBox;
 
     private TasksTableWidget tasksTableWidget;
 
@@ -54,6 +51,6 @@ public class FilterTaskWidget extends Composite {
 
     @UiHandler("btnSubmit")
     public void submitClick(ClickEvent event) {
-        tasksTableWidget.refresh(nameText.getText(), ownerText.getText(), executerText.getText());
+        tasksTableWidget.refresh(nameText.getText(), ownerText.getText(), executerText.getText(), statusBox.getSelectedValue());
     }
 }

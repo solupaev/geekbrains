@@ -2,6 +2,7 @@ package erth.task_tracker.services;
 
 import com.geekbrains.gwt.common.TaskDto;
 import erth.task_tracker.entities.Task;
+import erth.task_tracker.enums.Status;
 import erth.task_tracker.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,13 +29,14 @@ public class TaskService {
     public TaskDto save(TaskDto taskDto) {
         if (taskDto.getId() == null) {
             Task item = taskRepository.save(new Task(taskDto));
-            return new TaskDto(item.getId(), item.getName(), item.getOwner(), item.getExecuter(), item.getSummary());
+            return new TaskDto(item.getId(), item.getName(), item.getOwner(), item.getExecuter(), item.getSummary(), item.getStatus().toString());
         } else {
             Task item = taskRepository.getOne(taskDto.getId());
             item.setName(taskDto.getName());
             item.setOwner(taskDto.getOwner());
             item.setExecuter(taskDto.getExecuter());
             item.setSummary(taskDto.getSummary());
+            item.setStatus(Status.valueOf(taskDto.getStatus()));
             taskRepository.save(item);
             return taskDto;
         }
@@ -51,7 +53,7 @@ public class TaskService {
     public List<TaskDto> getAll(Specification<Task> spec) {
         List<Task> tasks = (List<Task>) taskRepository.findAll(spec);
 
-        return tasks.stream().map(task -> new TaskDto(task.getId(),task.getName(),task.getOwner(),task.getExecuter(),task.getSummary())).collect(Collectors.toList());
+        return tasks.stream().map(task -> new TaskDto(task.getId(),task.getName(),task.getOwner(),task.getExecuter(),task.getSummary(),task.getStatus().toString())).collect(Collectors.toList());
     }
 
     public Task getTaskById(Long id) {
