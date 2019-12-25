@@ -93,7 +93,7 @@ public class TasksTableWidget extends Composite {
         client = GWT.create(TasksClient.class);
 
         Column<TaskDto, TaskDto> actionColumn = new Column<TaskDto, TaskDto>(
-                new ActionCell<TaskDto>("REMOVE", new ActionCell.Delegate<TaskDto>() {
+                new ActionCell<TaskDto>("Удалить", new ActionCell.Delegate<TaskDto>() {
                     @Override
                     public void execute(TaskDto task) {
                         client.removeTask(token, task.getId().toString(), new MethodCallback<Void>() {
@@ -118,7 +118,7 @@ public class TasksTableWidget extends Composite {
         table.addColumn(actionColumn, "Actions");
 
         Column<TaskDto, TaskDto> editColumn = new Column<TaskDto, TaskDto>(
-                new ActionCell<TaskDto>("EDIT/DETAIL", new ActionCell.Delegate<TaskDto>() {
+                new ActionCell<TaskDto>("Просмотр/редактирование", new ActionCell.Delegate<TaskDto>() {
                     @Override
                     public void execute(TaskDto task) {
                         showEditDialog(task);

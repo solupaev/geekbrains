@@ -18,9 +18,6 @@ public class AddTaskFormWidget extends Composite {
     TextBox nameText;
 
     @UiField
-    TextBox ownerText;
-
-    @UiField
     TextBox executerText;
 
     @UiField
@@ -46,10 +43,6 @@ public class AddTaskFormWidget extends Composite {
             Window.alert("Название задачи должно быть не менее 4 символов");
             event.cancel();
         }
-        if (ownerText.getText().length() == 0) {
-            Window.alert("Не заполнен автор");
-            event.cancel();
-        }
         if (executerText.getText().length() == 0) {
             Window.alert("Не заполнен исполнитель");
             event.cancel();
@@ -66,7 +59,7 @@ public class AddTaskFormWidget extends Composite {
 
     @UiHandler("btnSubmit")
     public void submitClick(ClickEvent event) {
-        tasksTableWidget.addTask(nameText.getText(), ownerText.getText(), executerText.getText(), summaryText.getText());
+        tasksTableWidget.addTask(nameText.getText(), "", executerText.getText(), summaryText.getText());
         this.form.reset();
     }
 }

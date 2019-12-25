@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,9 +29,14 @@ public class TaskService {
 
     public TaskDto save(TaskDto taskDto) {
         if (taskDto.getId() == null) {
-            Task item = taskRepository.save(new Task(taskDto));
+            System.out.println("Создаем задачу");
+            Task item = new Task(taskDto);
+            item.setOwner(SecurityContextHolder.getContext().getAuthentication().getName());
+            System.out.println("Автор: " + item.getOwner());
+            taskRepository.save(item);
             return new TaskDto(item.getId(), item.getName(), item.getOwner(), item.getExecuter(), item.getSummary(), item.getStatus().toString());
         } else {
+            System.out.println("Редактируем задачу");
             Task item = taskRepository.getOne(taskDto.getId());
             item.setName(taskDto.getName());
             item.setOwner(taskDto.getOwner());

@@ -1,0 +1,26 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:DecoratorPanel>
+        <g:FormPanel ui:field="form" method="POST">
+            <g:VerticalPanel spacing="10">
+                <g:HorizontalPanel>
+                    <g:Label text="Добавление задачи" />
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Тема:" width="100px"/>
+                    <g:TextBox name="name" ui:field="nameText"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Исполнитель:" width="100px"/>
+                    <g:TextBox name="executer" ui:field="executerText"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
+                    <g:Label text="Описание:" width="100px"/>
+                    <g:TextArea name="summary" ui:field="summaryText" width="200px" height="73px"/>
+                </g:HorizontalPanel>
+                <g:Button ui:field="btnSubmit">Создать</g:Button>
+            </g:VerticalPanel>
+        </g:FormPanel>
+    </g:DecoratorPanel>
+</ui:UiBinder>
