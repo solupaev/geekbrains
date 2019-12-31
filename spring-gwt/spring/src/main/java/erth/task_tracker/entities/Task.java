@@ -48,7 +48,7 @@ public class Task {
         this.owner = taskDto.getOwner();
         this.executer = taskDto.getExecuter();
         this.summary = taskDto.getSummary();
-        this.status = Status.OPEN;
+        this.status = Status.valueOf(taskDto.getStatus());
     }
 
     @Override

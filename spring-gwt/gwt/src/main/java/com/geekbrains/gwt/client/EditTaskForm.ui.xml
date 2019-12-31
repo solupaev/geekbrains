@@ -2,11 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <g:DecoratorPanel>
-        <g:FormPanel ui:field="form" method="GET">
+        <g:FormPanel ui:field="form" method="POST">
             <g:VerticalPanel spacing="10">
-                <g:HorizontalPanel>
-                    <g:Label text="Фильтр"/>
-                </g:HorizontalPanel>
                 <g:HorizontalPanel>
                     <g:Label text="Тема:" width="100px"/>
                     <g:TextBox name="name" ui:field="nameText"/>
@@ -20,16 +17,20 @@
                     <g:TextBox name="executer" ui:field="executerText"/>
                 </g:HorizontalPanel>
                 <g:HorizontalPanel>
+                    <g:Label text="Описание:" width="100px" height="50px"/>
+                    <g:TextArea name="summary" ui:field="summaryText"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel>
                     <g:Label text="Статус:" width="100px" height="50px"/>
                     <g:ListBox ui:field="statusBox" name="status" width="209px">
-                        <g:item value=""></g:item>
                         <g:item value="OPEN">Открыта</g:item>
                         <g:item value="PLANED">Запланирована</g:item>
                         <g:item value="INPROGRESS">В работе</g:item>
                         <g:item value="CLOSED">Закрыта</g:item>
                     </g:ListBox>
                 </g:HorizontalPanel>
-                <g:Button ui:field="btnSubmit">Найти</g:Button>
+                <g:Button ui:field="btnSubmit">Сохранить</g:Button>
+                <g:Button ui:field="btnClose">Закрыть</g:Button>
             </g:VerticalPanel>
         </g:FormPanel>
     </g:DecoratorPanel>

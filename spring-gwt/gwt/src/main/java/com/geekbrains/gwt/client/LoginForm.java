@@ -64,7 +64,7 @@ public class LoginForm extends Composite {
             public void onSuccess(Method method, JwtAuthResponseDto jwtAuthResponseDto) {
                 GWT.log("Token: " + jwtAuthResponseDto.getToken());
                 Storage.getLocalStorageIfSupported().setItem("jwt", "Bearer " +  jwtAuthResponseDto.getToken());
-                tasksTableWidget.refresh();
+                tasksTableWidget.refresh("","","","");
                 tabPanel.selectTab(1);
             }
         });

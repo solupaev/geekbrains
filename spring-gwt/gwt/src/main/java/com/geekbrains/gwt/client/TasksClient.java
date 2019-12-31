@@ -10,9 +10,16 @@ import java.util.List;
 @Path("/tasks")
 public interface TasksClient extends RestService {
     @GET
-    void getAllTasks(@HeaderParam("Authorization") String token, MethodCallback<List<TaskDto>> tasks);
+    @Path("/")
+    void getAllTasks(@HeaderParam("Authorization") String token, @QueryParam("nameFilter") String nameFilter
+            , @QueryParam("ownerFilter") String ownerFilter, @QueryParam("executerFilter") String executerFilter
+            , @QueryParam("statusFilter") String statusFilter, MethodCallback<List<TaskDto>> tasks);
+
+    @POST
+    @Path("/")
+    void addTask(TaskDto taskDto, @HeaderParam("Authorization") String token, MethodCallback<TaskDto> result);
 
     @GET
     @Path("remove/{id}")
-    void removeTask(@PathParam("id") String id, MethodCallback<Void> result);
+    void removeTask(@HeaderParam("Authorization") String token, @PathParam("id") String id, MethodCallback<Void> result);
 }

@@ -11,7 +11,4 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
-
-    @Query("Select new com.geekbrains.gwt.common.TaskDto(t.id, t.name, t.owner, t.executer, t.summary) from Task t")
-    List<TaskDto> findAllDtos();
 }
